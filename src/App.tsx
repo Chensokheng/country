@@ -37,7 +37,7 @@ export default function App() {
 			const { from, to } = getFromAndTo(page);
 			const nextPageCountries = countries.slice(from, to);
 			console.log(nextPageCountries.length);
-			if (nextPageCountries.length >= 25) {
+			if (to < countries.length) {
 				setHasMore(true);
 			} else {
 				setHasMore(false);
