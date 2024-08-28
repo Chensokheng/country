@@ -167,16 +167,16 @@ export default function App() {
 							</div>
 							<div className="flex items-center">
 								<h1 className="text-gray-500">Capital:</h1>
-								<h1>{selectCountry.capital.join(" , ")}</h1>
+								<h1>{selectCountry?.capital?.join(" , ")}</h1>
 							</div>
 							<div className="flex items-center">
 								<h1 className="text-gray-500">region:</h1>
-								<h1>{selectCountry.region}</h1>
+								<h1>{selectCountry?.region}</h1>
 							</div>
 							<div className="flex items-center">
 								<h1 className="text-gray-500">Lat,lng:</h1>
 								<h1>
-									{selectCountry.capitalInfo?.latlng?.join(
+									{selectCountry?.capitalInfo?.latlng?.join(
 										" , "
 									)}
 								</h1>

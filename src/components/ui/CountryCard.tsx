@@ -27,7 +27,7 @@ export default function CountryCard({ country }: { country: ICountry }) {
 				</div>
 				<div className="flex gap-2">
 					<h1 className="text-gray-500">altSpellings:</h1>
-					<h1>{country.altSpellings.join(" , ")}</h1>
+					<h1>{country?.altSpellings?.join(" , ")}</h1>
 				</div>
 				<div className="flex gap-2">
 					<h1 className="text-gray-500">idd:</h1>
