@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "./components/ui/button";
 import { getFromAndTo } from "./lib/utils";
 import { ICountry } from "@/lib/type";
@@ -20,6 +20,7 @@ export default function App() {
 	const [sortBy, setSortBy] = useState("");
 	const [selectCountry, setSelectCountry] = useState<ICountry>();
 
+	const inputRef = useRef() as React.MutableRefObject<HTMLInputElement>;
 	const [displayCountries, setDisplayCountries] = useState<ICountry[]>([]);
 	const [page, setPage] = useState(1);
 	const [hasMore, setHasMore] = useState(true);
@@ -27,6 +28,11 @@ export default function App() {
 		searchTerm: string;
 		result: ICountry[];
 	}>({ searchTerm: "", result: [] });
+
+	const resetInput = () => {
+		inputRef.current.value = "";
+		setSearchResult({ searchTerm: "", result: [] });
+	};
 
 	useEffect(() => {
 		fetchCountry();
@@ -36,13 +42,13 @@ export default function App() {
 		if (page >= 1) {
 			const { from, to } = getFromAndTo(page);
 			const nextPageCountries = countries.slice(from, to);
-			console.log(nextPageCountries.length);
 			if (to < countries.length) {
 				setHasMore(true);
 			} else {
 				setHasMore(false);
 			}
 			setDisplayCountries(nextPageCountries);
+			resetInput();
 		}
 	}, [page, countries]);
 
@@ -86,6 +92,7 @@ export default function App() {
 			<div className="space-y-5">
 				<div className=" flex items-center">
 					<Input
+						ref={inputRef}
 						placeholder="country name..."
 						onChange={handleSearch}
 						className="w-full"
@@ -103,7 +110,9 @@ export default function App() {
 
 				<div className="flex items-center justify-center gap-5 pt-10">
 					<Button
-						onClick={() => setPage(page - 1)}
+						onClick={() => {
+							setPage(page - 1);
+						}}
 						disabled={page <= 1}
 					>
 						Prev

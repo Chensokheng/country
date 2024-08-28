@@ -12,7 +12,7 @@ export default function CountryCard({ country }: { country: ICountry }) {
 			<div className="border p-5 rounded-md">
 				<img
 					src={country?.flags?.png}
-					className=" w-96 h-52 object-cover object-center"
+					className=" w-96 h-52 object-contain object-center"
 				/>
 				<h1 className=" font-bold">{country?.name?.official}</h1>
 				<div className="flex gap-2">

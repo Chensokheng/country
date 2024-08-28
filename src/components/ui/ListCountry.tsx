@@ -17,8 +17,7 @@ export default function ListCountry({
 		countries = countries.sort((a, b) => {
 			if (sortBy === "asc") {
 				return a.name.official.localeCompare(b.name.official);
-			}
-			{
+			} else {
 				return b.name.official.localeCompare(a.name.official);
 			}
 		});
